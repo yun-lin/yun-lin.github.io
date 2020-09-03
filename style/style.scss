@@ -1,0 +1,554 @@
+/*
+* @project: One - Flat Theme;
+* @author: 	SF Theme;
+*/
+
+$customFont: 'Lato', sans-serif;
+$defaultFont: 'Arial';
+$darkRedColor: #c12728;
+$lightRedColor: #d82c2e;
+$darkGreyColor: #363b3f;
+$darkGreyColor2: #b6b7b7;
+$socialIconsColor: #444749;
+$lightGreyColor: #f7f8f8;
+$bubbleColor:#BFBFBF;
+$whiteColor: #ffffff;
+$blackColor: #000000;
+$baseWidth:900px;
+
+/*------------------------------------------------------------------
+[Color Codes]
+Dark Red: #c12728;
+Light Red: #d82c2e;
+Dark Grey: #363b3f;
+Dark Grey 2: #b6b7b7;
+Social Buttons: #444749;
+Light Grey: #f7f8f8;
+Bubbles:#BFBFBF;
+White: #ffffff;
+Black: #000000;
+-------------------------------------------------------------------*/
+
+@mixin animate($duration, $animation, $delay){
+	-webkit-transition: all $duration $animation, $delay;
+	-moz-transition: 	all $duration $animation, $delay;
+	-o-transition: 		all $duration $animation, $delay;
+	-ms-transition: 	all $duration $animation, $delay;
+	transition: 		all $duration $animation, $delay;
+}
+
+@mixin animationDelay($delay){
+	animation-delay: 		 $delay;
+	-webkit-animation-delay: $delay;
+	-moz-animation-delay: 	 $delay;
+	-o-animation-delay: 	 $delay;
+	-ms-animation-delay: 	 $delay;
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	 -moz-border-radius: $radius;
+	  -ms-border-radius: $radius;
+	   -o-border-radius: $radius;
+	      border-radius: $radius;
+}
+
+@mixin boxshadow($hshadow, $wshadow, $blur, $spread, $color){
+	-webkit-box-shadow: $hshadow $wshadow $blur $spread $color;
+	-moz-box-shadow: 	$hshadow $wshadow $blur $spread $color;
+	-o-box-shadow: 		$hshadow $wshadow $blur $spread $color;
+	-ms-box-shadow: 	$hshadow $wshadow $blur $spread $color;
+	box-shadow: 		$hshadow $wshadow $blur $spread $color;
+}
+
+@mixin textshadow($x, $y, $blur, $color){
+	-webkit-text-shadow: $x $y $blur $color;
+	   -moz-text-shadow: $x $y $blur $color;
+		 -o-text-shadow: $x $y $blur $color;
+		-ms-text-shadow: $x $y $blur $color;
+			text-shadow: $x $y $blur $color;
+}
+
+@mixin scale($x,$y){
+	-webkit-transform: 	scale($x,$y);
+	-moz-transform: 	scale($x,$y);
+	-o-transform: 		scale($x,$y);
+	-ms-transform: 		scale($x,$y);
+	transform: 			scale($x,$y);
+}
+
+@mixin opacity($value){
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" $value * 100 ")";
+	filter: alpha(opacity=$value);
+	opacity: $value;
+}
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Welcome
+2. Navbar
+3. About 
+4. Skills 
+5. Work Experience 
+6. Portfolio 
+7. Contact
+8. Footer
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[0. General Body]
+-------------------------------------------------------------------*/
+body{color:$darkGreyColor; background:$lightGreyColor;}
+.section{
+	padding:30px 0 50px 0px;
+	h1, h2, h3, h4{font-family:$customFont; font-weight:700; color:$lightRedColor;}
+	p{font-family:$customFont; font-weight:400; font-size:15px; line-height:24px;}
+	.heading{text-align:center; padding-bottom:40px;}
+	.profilePic{text-align:center; margin:0 auto; float:none;}
+	.divider{width:100px; height:1px; background:$lightRedColor; margin:0 auto;}
+}
+
+section.colored{
+	h1,h2,h3,h4,p{color:$whiteColor;}
+}
+
+.btn{
+	font-family:$customFont; font-weight:400; font-size:14px; text-decoration:none; background:$whiteColor; color:$darkGreyColor2; border:1px solid $darkGreyColor2; padding:18px;
+	@include animate(0.3s, ease-in, 0s);
+	&:hover, &:focus{
+		background-color:$lightRedColor; border-color:$lightRedColor; color:$whiteColor;
+	}
+}
+
+.borderBtn{
+	font-family:$customFont; font-weight:700; font-size:14px; text-decoration:none; color:$whiteColor; border:1px solid $whiteColor; padding:18px 50px 18px 50px; display:inline-block;
+	@include border-radius(3px);
+	@include animate(0.3s, ease-in, 0s);
+	&:hover, &:focus{
+		background-color:$whiteColor; color:$lightRedColor; text-decoration:none;
+	}
+}
+section .centered{margin:0 auto; float:none;}
+.hidethis{@include opacity(0);}
+
+.loader{
+	width:100%; height:100%; background:$whiteColor; position:fixed; top:0px; left:0px; z-index:1000;
+	.inner{width:100%; height:100%; background:url(../images/loader.gif) center center no-repeat;}
+}
+
+/*------------------------------------------------------------------
+[1. Welcome]
+-------------------------------------------------------------------*/
+.overlay{width:100%; height:100%; position:absolute; z-index:3; background:url(../images/overlay.png);}
+.slides-container{display:none;}
+.slides-navigation{
+	margin:0 auto; position:absolute; z-index:11; top:46%; width:100%;
+	.prev, .next{position:absolute; display:block; width:47px; height:47px; background:url(../images/prevnext.png);}
+	.prev{left:20px; background-position:bottom;}
+	.next{right:20px; background-position:top;}
+}
+.welcome-message{
+	position:absolute; width:100%; height:250px; top:50%; margin-top:-125px; z-index:10; text-align:center;
+	.heading{padding:18px 0px; }
+	p{font-family:$customFont; font-size:55px; color:$whiteColor; @include textshadow(0px, 2px, 5px, rgba(0, 0, 0, 0.4));}
+	p.small{font-family:$customFont; font-size:24px; color:$whiteColor;}
+	.borderBtn{
+		@include textshadow(0px, 2px, 5px, rgba(0, 0, 0, 0.4));
+		&:hover{@include textshadow(0px, 2px, 5px, rgba(0, 0, 0, 0));}
+	}
+}
+/*------------------------------------------------------------------
+[2. Navbar]
+-------------------------------------------------------------------*/
+.navbar-flat{
+	background:$lightRedColor; margin-bottom:0px; @include border-radius(0px);
+	.navbar-collapse{text-align:center;}
+	.navbar-toggle .icon-bar{background:$whiteColor;}
+	ul{float:none;}
+	li{
+		display:inline-block; float:none;
+		a{
+			&:hover{background:$darkRedColor; color:$whiteColor;}
+			&:focus{background:$darkRedColor; color:$whiteColor;}
+		}
+	}
+	li.active{
+		a{background:$darkRedColor; color:$whiteColor;}
+	}
+	a{font-family:$customFont; font-weight:700; color:$lightGreyColor; @include animate(0.3s, ease-in, 1s);}
+	.navbar-brand{display:none;}
+}
+
+/*------------------------------------------------------------------
+[3. About]
+-------------------------------------------------------------------*/
+.hero{
+	background:$lightRedColor; color:$whiteColor;
+	.borderBtn{margin-top:20px;}
+	h3{color:$blackColor !important;}
+}
+.firstSec{padding-top:30px;}
+.firstSec.fixed{padding-top:80px;}
+.services .services-inner{margin-top:20px; @include animate(0.3s, ease-in, 0s);}
+.service{
+	border:1px solid #e3e5e5; padding-top:50px; padding-bottom:50px; text-align:center; color:$lightRedColor; margin-left:-1px;
+	h3{color:$blackColor; @include animate(0.3s, ease-in, 0s);}
+	i{
+		width:51px; height:45px; margin:0 auto; display:block; background:url(../images/icons.png) no-repeat;
+		@include animate(0.3s, ease-in, 0s);
+	}
+	.heart{background-position:left top;}
+	.bulp{background-position:-51px top;}
+	.graph{background-position:-102px top;}
+	.coding{background-position:-152px top;}
+	.globe{background-position:-204px top;}
+	.music{background-position:-255px top;}
+	.pencil{background-position:-306px top;}
+	.camera{background-position:-357px top;}
+	.vcamera{background-position:-408px top;}
+	.cloud{background-position:-459px top;}
+	@include animate(0.3s, ease-in, 1s);
+	&:hover, &:focus{
+		background-color:$lightRedColor; border-color:$lightRedColor; color:$whiteColor;
+		h3{color:$whiteColor;}
+		.heart{background-position:left bottom;}
+		.bulp{background-position:-51px bottom;}
+		.graph{background-position:-103px bottom;}
+		.coding{background-position:-152px bottom;}
+		.globe{background-position:-204px bottom;}
+		.music{background-position:-255px bottom;}
+		.pencil{background-position:-306px bottom;}
+		.camera{background-position:-357px bottom;}
+		.vcamera{background-position:-408px bottom;}
+		.cloud{background-position:-459px bottom;}
+	}
+}
+
+/*------------------------------------------------------------------
+[4. Skills]
+-------------------------------------------------------------------*/
+section.skills{
+	background:$lightRedColor;
+	h4{color:$blackColor !important;}
+}
+.skill{
+	margin:0 auto 20px auto; float:none; text-align:center;
+}
+.chart{
+	position:relative; width:152px; height:152px; display:inline-block; margin:0 0 25px 0px; text-align:center;
+	canvas{position:absolute; left:0px; top:0px;}
+	.percent{
+		font-family:$customFont; color:$blackColor; line-height:152px; display:inline-block; font-size:35px;
+		&:after{content: '%';}
+	}
+}
+
+/*------------------------------------------------------------------
+[5. Work Experience]
+-------------------------------------------------------------------*/
+.timeline{
+	float:left; width:100%; background:url(../images/timelinebg.png) center top repeat-y; padding:50px 0 42px 0px;
+	ul{float:left; width:100%;}
+	li{float:left; width:50%; position:relative; @include opacity(0);}
+	.point{width:57px; height:57px; background:url(../images/timeline-item.png); position:absolute; right:-28px; top:4px;}
+	.bubble-arrow{width:16px; height:25px; background:url(../images/bubbles-arrow.png) left top no-repeat; position:absolute; top:20px; right:-10px;}
+	.bubble{float:right; width:64.4%; margin:0px 30px 0 0px; padding:22px 32px 25px 30px; background:$darkGreyColor; position:relative;
+		@include border-radius(6px);
+		@include boxshadow(1px, 2px, 2px, 2px, rgba(0, 0, 0, 0.1));
+		@include animate(0.2s, linear, 1s);
+	}
+	.bubble:hover{
+		@include scale(1.05, 1.05);
+	}
+	.bubble p{font-family:$customFont; font-size:14px; line-height:1.3; font-weight:400; color:$whiteColor; margin:0px; text-align:left; margin:0 0 15px 0px;}
+	.bubble p.name{font-size:20px; font-weight:700; margin:0px;}
+	.bubble p.title{font-size:14px; font-weight:400; margin:0px;}
+	.odd{margin:80px 0 0 0;}
+	.odd .bubble-arrow{left:-10px; right:auto; background-position:right top;}
+	.odd .bubble{margin:0px 0px 0 30px;}
+	.odd .point{left:-29px;}
+	.odd .timestamp{float:left;}
+	.odd .timestamp p.date, .odd .timestamp p.time{text-align:left; margin:0 0 0 50px;}
+	.odd .timestamp p.date{margin-top:10px;}
+	.odd .bubble{float:left;}
+	.odd .bubble img{left:auto; right:-34px;}
+
+	/* Animations */
+	li:nth-child(1){
+		@include animationDelay(0.2s);
+	}
+	li:nth-child(2){
+		@include animationDelay(0.4s);
+	}
+	li:nth-child(3){
+		@include animationDelay(0.8s);
+	}
+	li:nth-child(4){
+		@include animationDelay(1s);
+	}
+	li:nth-child(5){
+		@include animationDelay(1.2s);
+	}
+	li:nth-child(6){
+		@include animationDelay(1.4s);
+	}
+	li:nth-child(7){
+		@include animationDelay(1.6s);
+	}
+	li:nth-child(8){
+		@include animationDelay(1.8s);
+	}
+	li:nth-child(9){
+		@include animationDelay(2s);
+	}
+	li:nth-child(10){
+		@include animationDelay(2.2s);
+	}
+
+}
+
+/*------------------------------------------------------------------
+[6. Portfolio]
+-------------------------------------------------------------------*/
+.filter{
+	text-align:center; width:100%;
+	li{display:inline-block; padding:5px;}
+	a{
+		display:block;
+		@extend .btn;
+		padding-top:10px; padding-bottom:10px;
+	}
+	.current{background-color:$lightRedColor; border-color:$lightRedColor; color:$whiteColor;}
+}
+
+section.portfolio{background:$whiteColor;}
+.portfolio-items{
+	@include animate(0.2s, linear, 1s);
+	li{
+		padding:5px; display:block; z-index:2;
+		img{@include animate(0.2s, linear, 1s);}
+	}
+	.item{position:relative; display:block; overflow:hidden;}
+	.mask{
+		width:100%; height:100%; background:url(../images/mask.png); position:absolute; left:0px; top:0px; z-index:2;
+		@include opacity(0);
+		@include animate(0.2s, linear, 1s);
+	}
+	.icons{
+		position:absolute; width:90px; height:40px; left:50%; top:50%; margin:-21px auto 0 -47px; text-align:center; z-index:3;
+		i{color:$whiteColor; font-size:20px; margin-top:9px;}
+	}
+	.projectlink, .fullwidth{
+		width:40px; height:40px; background:$darkRedColor; position:relative;
+		@include animate(0.2s, ease-in-out, 0.2s);
+	}
+	.fullwidth{float:left; top:-200px;}
+	.projectlink{float:right; bottom:-200px;}
+	li .item:hover{
+		img{
+			@include scale(1.05, 1.05);
+		}
+		.mask{@include opacity(1);}
+		.fullwidth{top:0px;}
+		.projectlink{bottom:0px;}
+	}
+}
+
+.fancybox-close{top:0px; right:0px;}
+
+/*------------------------------------------------------------------
+[7. Contact]
+-------------------------------------------------------------------*/
+section.contact{
+	.details{
+		text-align:center; padding:0 0 30px 0px;
+		p{font-family:$customFont; font-size:30px; font-weight:300;}
+		p.bigger{font-size:40px; font-weight:700; margin-top:20px;}
+	}
+
+}
+.contactform{
+	input, textarea{border:1px solid $darkGreyColor2; color:$darkGreyColor; background:none; padding:15px 30px; margin:0 3% 20px 0px; resize:none;}
+	.error, .form-error{border-color:$darkRedColor !important;}
+	.no-margin{margin-right:0px;}
+	input.col-lg-6{width:48.5%;}
+	button{
+		@extend .borderBtn;
+		background:$lightRedColor;
+		&:hover, &:focus{border-color:$lightRedColor;}
+	}
+	p{text-align:center;}
+}
+
+.form a{color:$whiteColor;}
+
+#map{float:left; width:100%; height:390px; border-top:4px solid $lightRedColor;}
+
+/*------------------------------------------------------------------
+[8. Footer]
+-------------------------------------------------------------------*/
+footer{
+	background:$darkGreyColor;
+	p{font-size:12px; color:$whiteColor; text-align:center;}
+	ul{width:100%; text-align:center; margin-top:20px;}
+	li{
+		display:inline-block; margin:0 4px;
+	}
+	li a{
+		display:block; text-decoration:none; border-bottom:none; padding:18px;
+		@include border-radius(3px);
+		@include animate(0.3s, ease-in, 1s);
+	}
+	.facebook{
+		background:url(../images/facebook.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#4265b9;
+		}
+	}
+
+	.twitter{
+		background:url(../images/twitter.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#9ae4e8;
+		}
+	}
+
+	.google{
+		background:url(../images/google.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#d62408;
+		}
+	}
+
+	.youtube{
+		background:url(../images/youtube.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#df3333;
+		}
+	}
+	.flickr{
+		background:url(../images/flickr.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#E2408F;
+		}
+	}
+	.dribbble{
+		background:url(../images/dribbble.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#e94c89;
+		}
+	}
+	.behance{
+		background:url(../images/behance.png) center no-repeat $socialIconsColor;
+		&:hover{
+			background-color:#3fbff0;
+		}
+	}
+}
+
+img{max-width:100%; height:auto;}
+.clear{clear:both;}
+
+::selection{
+	background-color:$lightRedColor; color:$whiteColor;
+}
+
+::-moz-selection{
+	background-color:$lightRedColor; color:$whiteColor;
+}
+
+input, textarea{
+    -webkit-appearance:none;
+}
+
+/* OWL */
+.owl-theme .owl-controls .owl-page span{background:$whiteColor;}
+
+/* CSS Keyframe Animations */
+.animated {
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	-ms-animation-fill-mode: both;
+	-o-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-moz-animation-timing-function: ease-in-out;
+	-webkit-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-ms-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	animation-duration: 1s;
+}
+
+@-webkit-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-moz-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-moz-transform: translateY(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		-moz-transform: translateY(0);
+	}
+}
+
+@-o-keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		-o-transform: translateY(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		-o-transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.fadeInUp {
+	-webkit-animation-name: fadeInUp;
+	-moz-animation-name: fadeInUp;
+	-o-animation-name: fadeInUp;
+	animation-name: fadeInUp;
+}
+@media only screen and (max-width:768px){
+	.navbar-flat li{display:inline-block;}
+}
+@media only screen and (max-width:765px){
+	.navbar-brand{display:block !important;}
+	.navbar-flat li{display:inline;}
+	.timeline{
+		background-position:38px top;
+		li, .odd{margin:0px 0 20px 43px; width:85%;}
+		.point, .odd .point{left:-32px; right:auto;}
+		.timestamp, .bubble{float:left;}
+		.bubble, .odd .bubble{margin:0px 0 0 30px; width:80%; padding:22px 30px 25px 32px;}
+		.bubble-arrow{background-position:right top; left:-10px; right:auto;}
+	}
+
+}
+
+
